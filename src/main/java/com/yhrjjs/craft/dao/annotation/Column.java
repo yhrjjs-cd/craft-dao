@@ -1,5 +1,11 @@
 package com.yhrjjs.craft.dao.annotation;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * (iTek-china 2022)
  *
@@ -9,6 +15,9 @@ package com.yhrjjs.craft.dao.annotation;
  *   2022-05-14 * 黄奇创建
  * </pre>
  */
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.FIELD})
+@Documented
 public @interface Column {
     /**
      * 对应字段名
@@ -20,5 +29,5 @@ public @interface Column {
      *
      * @return true: 蛇底式小写，false: 驼峰式大小写
      */
-    boolean hump() default true;
+    boolean hump() default false;
 }

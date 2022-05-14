@@ -1,5 +1,8 @@
 package com.yhrjjs.craft.dao.interceptor;
 
+import com.yhrjjs.craft.dao.api.entity.IEntity;
+import com.yhrjjs.craft.dao.impl.jdbctemplate.OperateType;
+
 /**
  * (iTek-china 2022)
  *
@@ -10,4 +13,7 @@ package com.yhrjjs.craft.dao.interceptor;
  * </pre>
  */
 public class DefaultEntityInterceptor implements IEntityInterceptor {
+    @Override
+    public <T extends IEntity> void setupEntity(T entity, OperateType operateType) {
+    }
 }

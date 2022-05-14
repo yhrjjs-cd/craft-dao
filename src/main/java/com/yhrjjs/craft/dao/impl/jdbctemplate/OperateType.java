@@ -1,4 +1,4 @@
-package com.yhrjjs.craft.dao.impl;
+package com.yhrjjs.craft.dao.impl.jdbctemplate;
 
 /**
  * (iTek-china 2022)
@@ -9,5 +9,6 @@ package com.yhrjjs.craft.dao.impl;
  *   2022-05-14 * 黄奇创建
  * </pre>
  */
-public class JdbcTemplateDao {
+public enum OperateType {
+    INSERT
 }

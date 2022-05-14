@@ -1,6 +1,7 @@
 package com.yhrjjs.craft.dao.api;
 
 import com.yhrjjs.craft.dao.api.condition.Condition;
+import com.yhrjjs.craft.dao.api.entity.IEntity;
 import com.yhrjjs.craft.dao.pager.Pager;
 import java.util.List;
 
@@ -35,11 +36,11 @@ public interface IDao {
     /**
      * 根据实体名、属性链插入对象，返回插入的对象
      *
-     * @param classOfT 实体类
-     * @param chain    属性链
+     * @param entityClass 实体类
+     * @param chain       属性链
      * @return 插入的对象
      */
-    <T extends IEntity> T insert(Class<T> classOfT, Chain chain);
+    <T extends IEntity> T insert(Class<T> entityClass, Chain chain);
 
     /**
      * 同时插入主子实体
