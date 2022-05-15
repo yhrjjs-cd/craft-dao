@@ -20,7 +20,7 @@ public interface IEntity {
      *
      * @return 值Map
      */
-    default Map<String, Object> valueMap() {
+    default Map valueMap() {
         return Collections.emptyMap();
     }
 

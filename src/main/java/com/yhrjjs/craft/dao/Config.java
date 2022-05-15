@@ -1,4 +1,4 @@
-package com.yhrjjs.craft.dao.config;
+package com.yhrjjs.craft.dao;
 
 import com.yhrjjs.craft.dao.impl.jdbctemplate.JdbcTemplateDao;
 import javax.sql.DataSource;

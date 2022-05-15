@@ -4,9 +4,12 @@ import com.google.common.collect.Lists;
 import com.yhrjjs.craft.dao.annotation.Column;
 import com.yhrjjs.craft.dao.annotation.Table;
 import com.yhrjjs.craft.dao.api.Chain;
+import com.yhrjjs.craft.dao.api.FieldMatcher;
 import com.yhrjjs.craft.dao.api.entity.IEntity;
 import com.yhrjjs.craft.dao.impl.jdbctemplate.sqlbuilder.InsertSqlTemplateBuilder;
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Objects;
 import lombok.SneakyThrows;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.util.ReflectionUtils;
@@ -102,5 +105,21 @@ public class EntityResolver {
     @SneakyThrows
     public static <T extends IEntity> IEntity of(Class<T> entityClass) {
         return entityClass.newInstance();
+    }
+
+    public static <T extends IEntity> List<IEntity> getLinks(T masterEntity, FieldMatcher fieldMatcher) {
+        List<IEntity> links = Lists.newArrayList();
+        ReflectionUtils.doWithFields(masterEntity.getClass(), field ->
+        {
+            List<IEntity> entities = (List<IEntity>) masterEntity.valueMap().get(field.getName());
+
+            if (Objects.isNull(entities)) {
+                // TODO LOGGING
+            } else {
+                links.addAll(entities);
+            }
+        }, field -> fieldMatcher.match(field.getName()));
+
+        return links;
     }
 }

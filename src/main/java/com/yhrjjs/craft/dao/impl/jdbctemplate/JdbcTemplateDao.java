@@ -31,7 +31,7 @@ public class JdbcTemplateDao implements IDao {
         Sql sql = EntityResolver.resolveInsertSql(entity);
 
         sql.getEntityInterceptor().setupEntity(entity, OperateType.INSERT);
-
+        
         namedParameterJdbcTemplate.update(sql.getInsertTemplate(), entity.valueMap());
 
         return entity;
@@ -61,7 +61,19 @@ public class JdbcTemplateDao implements IDao {
 
     @Override
     public <T extends IEntity> T insertWithLinks(T masterEntity, FieldMatcher fieldMatcher) {
-        return null;
+        Sql sql = EntityResolver.resolveInsertSql(masterEntity);
+        sql.getEntityInterceptor().setupEntity(masterEntity, OperateType.INSERT);
+        namedParameterJdbcTemplate.update(sql.getInsertTemplate(), masterEntity.valueMap());
+
+        List<IEntity> links = EntityResolver.getLinks(masterEntity, fieldMatcher);
+        System.out.println(links);
+        for (IEntity entity : links) {
+            sql = EntityResolver.resolveInsertSql(entity);
+            sql.getEntityInterceptor().setupEntity(entity, OperateType.INSERT);
+            namedParameterJdbcTemplate.update(sql.getInsertTemplate(), entity.valueMap());
+        }
+
+        return masterEntity;
     }
 
     @Override
