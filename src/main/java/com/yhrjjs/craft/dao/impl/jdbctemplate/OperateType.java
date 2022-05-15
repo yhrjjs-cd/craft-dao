@@ -10,5 +10,6 @@ package com.yhrjjs.craft.dao.impl.jdbctemplate;
  * </pre>
  */
 public enum OperateType {
-    INSERT
+    INSERT,
+    CLEAR
 }

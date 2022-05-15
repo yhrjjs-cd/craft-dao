@@ -31,4 +31,9 @@ public class Sql {
      * @return Insert模板
      */
     private String insertTemplate;
+
+    /**
+     * 待执行的Sql脚本
+     */
+    private String sqlText;
 }

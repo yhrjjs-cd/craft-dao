@@ -185,4 +185,11 @@ public interface IDao {
     <T extends IEntity> List<T> count(Class<T> classOfT, Condition condition);
 
     <T extends IEntity> List<T> exists(Class<T> classOfT, Condition condition);
+
+    /**
+     * 清除， 会删除表所有记录
+     *
+     * @param classOfEntity 实体类
+     */
+    void clear(Class<? extends IEntity> classOfEntity);
 }

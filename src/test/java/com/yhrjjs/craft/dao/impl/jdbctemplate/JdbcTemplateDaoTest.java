@@ -1,27 +1,40 @@
 package com.yhrjjs.craft.dao.impl.jdbctemplate;
 
 import com.google.common.collect.Lists;
-import com.yhrjjs.craft.dao.api.Chain;
-import com.yhrjjs.craft.dao.api.FieldMatcher;
 import com.yhrjjs.craft.dao.Config;
+import com.yhrjjs.craft.dao.api.Chain;
 import com.yhrjjs.craft.dao.config.TestInsertEntity;
 import java.util.List;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
+@DisplayName("Dao测试")
 @SpringBootTest(classes = JdbcTemplateDaoTest.class)
 @ComponentScan(basePackageClasses = {Config.class})
 public class JdbcTemplateDaoTest {
     @Autowired
     private JdbcTemplateDao jdbcTemplateDao;
 
+    @BeforeAll
+    public static void init() {
+        System.out.println("开始处理");
+    }
+
+    @AfterAll
+    public static void exit() {
+        System.out.println("结束处理");
+    }
+
     @Test
     public void testInsert1() {
+        jdbcTemplateDao.clear(TestInsertEntity.class);
+        System.out.println("testInsert1");
         TestInsertEntity entity = new TestInsertEntity();
         entity.setA("这是我的");
         jdbcTemplateDao.insert(entity);

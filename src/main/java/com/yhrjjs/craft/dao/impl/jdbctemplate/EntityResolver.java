@@ -122,4 +122,13 @@ public class EntityResolver {
 
         return links;
     }
+
+    public static Sql resolveClearSql(Class<? extends IEntity> classOfEntity) {
+        String tableName = getTableName(classOfEntity);
+
+        return Sql.builder()
+                .sqlText("DELETE from " + tableName)
+                .build();
+
+    }
 }
